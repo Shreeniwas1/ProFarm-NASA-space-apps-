@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodity Prices Dashboard</title>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- CSS Styles -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .chart-container {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Commodity Prices Dashboard</h1>
+
+    <!-- Table to Display Data -->
+    <h2>Commodity Prices Table</h2>
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>State</th>
+          <th>District</th>
+          <th>Market</th>
+          <th>Commodity</th>
+          <th>Variety</th>
+          <th>Grade</th>
+          <th>Arrival Date</th>
+          <th>Min Price</th>
+          <th>Max Price</th>
+          <th>Modal Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data will be inserted here dynamically -->
+      </tbody>
+    </table>
+
+    <!-- Charts -->
+    <div class="chart-container">
+      <h2>Number of Commodities per State</h2>
+      <canvas id="commoditiesPerStateChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h2>Average Modal Price per Commodity</h2>
+      <canvas id="averageModalPriceChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h2>Price Range for Selected Commodity</h2>
+      <select id="commodity-select">
+        <option value="">Select Commodity</option>
+        <!-- Options will be populated dynamically -->
+      </select>
+      <canvas id="priceRangeChart"></canvas>
+    </div>
+  </div>
+
+  <!-- JavaScript to Fetch and Visualize Data -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+          populateTable(data.records);
+          renderCommoditiesPerStateChart(data.records);
+          renderAverageModalPriceChart(data.records);
+          populateCommoditySelect(data.records);
+          setupPriceRangeChart(data.records);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    });
+
+    // Function to Populate the Data Table
+    function populateTable(records) {
+      const tableBody = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+      records.forEach(record => {
+        const row = tableBody.insertRow();
+        row.insertCell(0).innerText = record.state;
+        row.insertCell(1).innerText = record.district;
+        row.insertCell(2).innerText = record.market;
+        row.insertCell(3).innerText = record.commodity;
+        row.insertCell(4).innerText = record.variety;
+        row.insertCell(5).innerText = record.grade;
+        row.insertCell(6).innerText = record.arrival_date;
+        row.insertCell(7).innerText = record.min_price;
+        row.insertCell(8).innerText = record.max_price;
+        row.insertCell(9).innerText = record.modal_price;
+      });
+    }
+
+    // Function to Render Number of Commodities per State Chart
+    function renderCommoditiesPerStateChart(records) {
+      const stateCount = {};
+      records.forEach(record => {
+        stateCount[record.state] = (stateCount[record.state] || 0) + 1;
+      });
+
+      const states = Object.keys(stateCount);
+      const counts = Object.values(stateCount);
+
+      const ctx = document.getElementById('commoditiesPerStateChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: states,
+          datasets: [{
+            label: 'Number of Commodities',
+            data: counts,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // Function to Render Average Modal Price per Commodity Chart
+    function renderAverageModalPriceChart(records) {
+      const commodityPrices = {};
+      records.forEach(record => {
+        if (!commodityPrices[record.commodity]) {
+          commodityPrices[record.commodity] = { total: 0, count: 0 };
+        }
+        commodityPrices[record.commodity].total += record.modal_price;
+        commodityPrices[record.commodity].count += 1;
+      });
+
+      const commodities = Object.keys(commodityPrices);
+      const averagePrices = commodities.map(commodity => (commodityPrices[commodity].total / commodityPrices[commodity].count).toFixed(2));
+
+      const ctx = document.getElementById('averageModalPriceChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: commodities,
+          datasets: [{
+            label: 'Average Modal Price',
+            data: averagePrices,
+            backgroundColor: generateColors(commodities.length),
+            borderColor: '#fff',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true
+        }
+      });
+    }
+
+    // Function to Populate Commodity Select Dropdown
+    function populateCommoditySelect(records) {
+      const select = document.getElementById('commodity-select');
+      const commodities = [...new Set(records.map(record => record.commodity))].sort();
+      commodities.forEach(commodity => {
+        const option = document.createElement('option');
+        option.value = commodity;
+        option.text = commodity;
+        select.appendChild(option);
+      });
+
+      select.addEventListener('change', (e) => {
+        const selectedCommodity = e.target.value;
+        updatePriceRangeChart(records, selectedCommodity);
+      });
+    }
+
+    // Function to Setup Initial Price Range Chart
+    function setupPriceRangeChart(records) {
+      const ctx = document.getElementById('priceRangeChart').getContext('2d');
+      window.priceRangeChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: 'Min Price',
+              data: [],
+              backgroundColor: 'rgba(75, 192, 192, 0.6)'
+            },
+            {
+              label: 'Max Price',
+              data: [],
+              backgroundColor: 'rgba(255, 99, 132, 0.6)'
+            },
+            {
+              label: 'Modal Price',
+              data: [],
+              backgroundColor: 'rgba(255, 206, 86, 0.6)'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // Function to Update Price Range Chart Based on Selected Commodity
+    function updatePriceRangeChart(records, commodity) {
+      const filteredRecords = records.filter(record => record.commodity === commodity);
+
+      const labels = filteredRecords.map(record => record.market);
+      const minPrices = filteredRecords.map(record => record.min_price);
+      const maxPrices = filteredRecords.map(record => record.max_price);
+      const modalPrices = filteredRecords.map(record => record.modal_price);
+
+      window.priceRangeChart.data.labels = labels;
+      window.priceRangeChart.data.datasets[0].data = minPrices;
+      window.priceRangeChart.data.datasets[1].data = maxPrices;
+      window.priceRangeChart.data.datasets[2].data = modalPrices;
+      window.priceRangeChart.update();
+    }
+
+    // Helper Function to Generate Random Colors
+    function generateColors(count) {
+      const colors = [];
+      for (let i = 0; i < count; i++) {
+        const r = Math.floor(Math.random() * 255);
+        const g = Math.floor(Math.random() * 255);
+        const b = Math.floor(Math.random() * 255);
+        colors.push(`rgba(${r}, ${g}, ${b}, 0.6)`);
+      }
+      return colors;
+    }
+  </script>
+</body>
+</html>

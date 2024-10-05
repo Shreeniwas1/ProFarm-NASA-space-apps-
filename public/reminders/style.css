@@ -1,0 +1,363 @@
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  padding: 20px;
+  min-height: 100vh;
+  color: #2c3e50;
+}
+
+/* Container */
+.container {
+  background-color: rgba(255, 255, 255, 0.98);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+  margin-top: 50px;
+}
+
+/* Statistics Dashboard */
+.statistics {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.stat {
+  background-color: #f0f4f8;
+  padding: 20px 30px;
+  border-radius: 12px;
+  width: 28%;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.stat h3 {
+  margin-bottom: 15px;
+  color: #34495e;
+  font-size: 1.2em;
+}
+
+.stat p {
+  font-size: 2em;
+  color: #27ae60;
+  font-weight: bold;
+}
+
+/* Reminder Form */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  background-color: #f9fafb;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.form-group {
+  flex: 1 1 45%;
+  margin-bottom: 20px;
+}
+
+.form-group.full-width {
+  flex: 1 1 100%;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #34495e;
+  display: block;
+  font-size: 0.95em;
+}
+
+input, select {
+  padding: 12px 15px;
+  border: 1px solid #bdc3c7;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+  outline: none;
+}
+
+button[type="submit"] {
+  padding: 14px 25px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #3498db;
+  transform: translateY(-2px);
+}
+
+/* Export Button */
+.export-btn {
+  display: block;
+  margin: 0 auto 40px auto;
+  padding: 12px 25px;
+  background-color: #16a085;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.export-btn:hover {
+  background-color: #138d75;
+  transform: translateY(-2px);
+}
+
+/* Reminders List */
+.reminders {
+  margin-bottom: 50px;
+}
+
+.reminders h2 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #ecf0f1;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+li:hover {
+  background-color: #dfe6e9;
+  transform: translateY(-2px);
+}
+
+li.completed {
+  background-color: #d1f7d3;
+  text-decoration: line-through;
+  color: #7f8c8d;
+}
+
+li .reminder-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+li .reminder-info span {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+li .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+li .actions button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  color: white;
+}
+
+li .actions button.edit {
+  background-color: #2980b9; /* Blue */
+}
+
+li .actions button.delete {
+  background-color: #c0392b; /* Red */
+}
+
+li .actions button.complete {
+  background-color: #27ae60; /* Green */
+}
+
+li .actions button:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+/* Calendar View */
+.calendar {
+  margin-top: 50px;
+  background-color: #f9fafb;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+#calendar {
+  max-width: 100%;
+  margin: 0 auto;
+  font-size: 0.95em;
+}
+
+.fc-toolbar-title {
+  font-size: 1.5em !important;
+  color: #2c3e50;
+}
+
+.fc-daygrid-event {
+  background-color: #3498db !important;
+  border: none !important;
+  border-radius: 6px !important;
+  color: white !important;
+  padding: 2px 5px !important;
+  font-size: 0.9em !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.fc-daygrid-event:hover {
+  background-color: #2980b9 !important;
+  transform: translateY(-2px);
+}
+
+.fc-day-today {
+  background-color: #f0f4f8 !important;
+}
+
+.fc-selected {
+  background-color: #dfe6e9 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .statistics {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+  }
+
+  .stat {
+      width: 45%;
+      margin-bottom: 20px;
+  }
+
+  .form-group {
+      flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .statistics {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .stat {
+      width: 80%;
+      margin-bottom: 20px;
+  }
+
+  form {
+      flex-direction: column;
+  }
+
+  .form-group {
+      flex: 1 1 100%;
+  }
+
+  .calendar {
+      margin-top: 30px;
+      padding: 15px;
+  }
+
+  .fc-toolbar-title {
+      font-size: 1.3em !important;
+  }
+
+  .fc-daygrid-event {
+      font-size: 0.8em !important;
+      padding: 1px 4px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+      font-size: 2em;
+  }
+
+  h2 {
+      font-size: 1.5em;
+  }
+
+  .stat p {
+      font-size: 1.5em;
+  }
+
+  button, .export-btn {
+      font-size: 1em;
+      padding: 10px 18px;
+  }
+
+  li .actions button {
+      padding: 6px 12px;
+      font-size: 0.8em;
+  }
+}
