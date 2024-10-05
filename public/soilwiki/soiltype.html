@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Type Wiki</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="/index.html">
+                <img src="/images/Profarmlogo.jpg" alt="ProFarm Logo" height="200" class="header-logo">
+                </a>
+                <h1>ProFarm</h1>
+            </div>
+            <div class="header-right">
+                <nav>
+                    <ul class="nav-links">
+                        <li class="dropdown">
+                            <a href="#" class="dropbtn">Important Links</a>
+                            <div class="dropdown-content">
+                                <!-- <a href="#">Soil Type</a> --> <!--as this page is of the soil type-->
+                                <a href="#">Crop Management</a>
+                                <a href="#">Weather Updates</a>
+                                <a href="#">Add More Links</a>
+                            </div>
+                        </li>
+                        <li><button class="btn btn-signup">Sign Up</button></li>
+                        <li><button class="btn btn-login">Login</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- Search and Filter Section -->
+    <div class="container search-filter">
+        <input type="text" id="searchInput" placeholder="Search for soil types..." onkeyup="searchSoilTypes()">
+        <div class="filters">
+            <label for="drainageFilter">Drainage:</label>
+            <select id="drainageFilter" onchange="filterSoilTypes()">
+                <option value="">All</option>
+                <option value="Good">Good</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Poor">Poor</option>
+            </select>
+
+            <label for="fertilityFilter">Fertility:</label>
+            <select id="fertilityFilter" onchange="filterSoilTypes()">
+                <option value="">All</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+
+            <label for="phFilter">pH Level:</label>
+            <select id="phFilter" onchange="filterSoilTypes()">
+                <option value="">All</option>
+                <option value="Acidic">Acidic</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Alkaline">Alkaline</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Soil Types Container -->
+    <div class="container soil-container" id="soil-types">
+        <!-- Soil Type 1 -->
+        <div class="soil-card" data-drainage="Moderate" data-fertility="High" data-ph="Neutral">
+            <img src="https://cevnews.in/wp-content/uploads/2023/09/02-e1693556437387.jpg" alt="Clay Soil">
+            <div class="soil-card-content">
+                <h2>Clay Soil</h2>
+                <p>Clay soil is composed of very fine particles and retains water well, making it suitable for certain types of crops like rice and wheat.</p>
+                <a href="/soilwiki/Soil/Claysoil.html" class="learn-more">Learn More</a>
+                <button class="info-button" onclick="openModal('Clay Soil')">i</button>
+            </div>
+        </div>
+
+        <!-- Soil Type 2 -->
+        <div class="soil-card" data-drainage="Good" data-fertility="Low" data-ph="Alkaline">
+            <img src="https://as1.ftcdn.net/v2/jpg/02/61/30/22/1000_F_261302265_qSHRr74FU46yzaRCVNvVN0M9rV7bj6BQ.jpg" alt="Sandy Soil">
+            <div class="soil-card-content">
+                <h2>Sandy Soil</h2>
+                <p>Sandy soil has larger particles, allowing for good drainage, but it doesn't retain nutrients well. It's ideal for root vegetables like carrots.</p>
+                <a href="/soilwiki/Soil/Sandy.html" class="learn-more">Learn More</a>
+                <button class="info-button" onclick="openModal('Sandy Soil')">i</button>
+            </div>
+        </div>
+
+        <!-- Soil Type 3 -->
+        <div class="soil-card" data-drainage="Moderate" data-fertility="High" data-ph="Neutral">
+            <img src="https://t3.ftcdn.net/jpg/05/85/30/04/360_F_585300457_P4xD6ZRENNiVJwUjqED01ywNeSnlSUsc.jpg" alt="Silt Soil">
+            <div class="soil-card-content">
+                <h2>Silt Soil</h2>
+                <p>Silt soil is fertile and has good water retention capabilities, often found in river valleys, making it great for growing crops like rice.</p>
+                <a href="silt-soil.html" class="learn-more">Learn More</a>
+                <button class="info-button" onclick="openModal('Silt Soil')">i</button>
+            </div>
+        </div>
+
+        <!-- Soil Type 4 -->
+        <div class="soil-card" data-drainage="Good" data-fertility="High" data-ph="Neutral">
+            <img src="https://www.thespruce.com/thmb/vIHE8xrRVuNiFeNOYPSuoaT4xhY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/what-is-loam-1401908-01-a8ed5af19c7243fcb5d108e893a43bbe.jpg" alt="Loam Soil">
+            <div class="soil-card-content">
+                <h2>Loam Soil</h2>
+                <p>Loam soil is a combination of sand, silt, and clay. It's considered the perfect soil for growing most types of plants due to its balance of properties.</p>
+                <a href="/soilwiki/Soil/loam.html" class="learn-more">Learn More</a>
+                <button class="info-button" onclick="openModal('Loam Soil')">i</button>
+            </div>
+        </div>
+
+        <!-- Soil Type 5 -->
+        <div class="soil-card" data-drainage="Poor" data-fertility="Medium" data-ph="Acidic">
+            <img src="https://static1.backyardbossimages.com/wordpress/wp-content/uploads/2024/05/gardner-holding-peat-soil-from-a-construction-bag.jpg" alt="Peaty Soil">
+            <div class="soil-card-content">
+                <h2>Peaty Soil</h2>
+                <p>Peaty soil is dark, rich in organic material, and has a high acidic content. It’s excellent for planting shrubs and certain berries.</p>
+                <a href="peaty-soil.html" class="learn-more">Learn More</a>
+                <button class="info-button" onclick="openModal('Peaty Soil')">i</button>
+            </div>
+        </div>
+
+        <!-- Add more soil cards as needed -->
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="container about-section">
+        <h2>About Soil Type Wiki</h2>
+        <p>The Soil Type Wiki provides comprehensive information on various soil types, their characteristics, suitable plants, and management practices. Whether you're a student, gardener, or agricultural professional, this wiki serves as a valuable resource for understanding soil diversity.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container contact-section">
+        <h2>Contact Us</h2>
+        <form action="#" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer-placeholder">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2>ProFarm</h2>
+                <p>Optimizing Agriculture, Growing Together.</p>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <img src="/images/Profarmlogo.jpg" alt="ProFarm Logo" class="footer-logo">
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Soil Type</h2>
+            <p id="modalDescription">Detailed information about the soil type.</p>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
