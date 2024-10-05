@@ -1,0 +1,61 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 40px;
+    color: #444;
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    max-width: 650px;
+    margin: 0 auto;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    text-align: center;
+    color: #222;
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 500;
+    color: #333;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: #888;
+    outline: none;
+}
+
+canvas {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    width: 400px;  /* Set a fixed width for the chart */
+    height: 150px; /* Decrease the height further for readability */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
