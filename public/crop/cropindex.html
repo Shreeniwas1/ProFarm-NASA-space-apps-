@@ -13,8 +13,8 @@
     <header class="header">
         <div class="header-container">
             <div class="header-left">
-                <a href="/index.html">
-                    <img src="/images/Profarmlogo.png" alt="ProFarm Logo" width="70"" class="header-logo">
+                <a href="index.html">
+                <img src="images/ProFarmlogo.png" alt="ProFarm Logo" height="200" class="header-logo">
                 </a>
                 <h1>ProFarm</h1>
             </div>
@@ -24,14 +24,110 @@
                         <li class="dropdown">
                             <a href="#" class="dropbtn">Important Links</a>
                             <div class="dropdown-content">
-                                <!-- <a href="#">Soil Type</a> --> <!--as this page is of the soil type-->
-                                <a href="#">Crop Management</a>
+                                <a href="/soilwiki/soiltype.html">Soil Type</a>
+                                <a href="indexmaptool.html">MAP Index</a>
+                                <a href="#">crop Index</a>
                                 <a href="#">Weather Updates</a>
+                                <a href="/reminders/index.html">Farmers Reminder System</a>
                                 <a href="#">Add More Links</a>
                             </div>
                         </li>
-                        <li><button class="btn btn-signup">Sign Up</button></li>
-                        <li><button class="btn btn-login">Login</button></li>
+                        <a href="/login/index.html"><li><button  class="btn btn-signup">Sign Up</button></li></a>
+                        <a href="/login/index.html"><li><button class="btn btn-login">Login</button></li></a>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar for Crop Selection -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#" onclick="showCrop('wheat')">Wheat</a></li>
+            <li><a href="#" onclick="showCrop('rice')">Rice</a></li>
+            <li><a href="#" onclick="showCrop('millet')">Millet</a></li>
+        </ul>
+    </div>
+
+    <!-- Toggle Button for Sidebar -->
+    <button class="toggle-btn" id="toggleBtn" onclick="toggleSidebar()">
+        <span class="arrow">➤</span>
+    </button>
+
+    <!-- Main Content Area -->
+    <div class="main-content" id="main-content">
+        <h1>Select a Crop to Learn More</h1>
+
+        <!-- Wheat Information -->
+        <div id="wheat" class="plant-info" style="display:none;">
+            <h2>Wheat (Triticum)</h2>
+            <img src="/wheat.jpg" alt="Wheat Plant">
+            <div class="info-box-container">
+                <div class="info-box">
+                    <h3>General Information</h3>
+                    <p>Wheat is one of the major cereal crops globally grown for its seeds, which are ground to make flour for various food products like bread.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Water Usage</h3>
+                    <p>Wheat requires around 450-650 mm of water throughout its growth cycle.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Diseases</h3>
+                    <p>Common diseases include rust, smut, and mildew, which can cause damage to the crop.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Solution for Diseases</h3>
+                    <p>Proper crop rotation, resistant varieties, and fungicide application can help control wheat diseases.</p>
+                </div>
+                <div class="info-box full-width">
+                    <h3>Rain Requirements</h3>
+                    <p>Wheat requires moderate rainfall, typically during the germination phase. Excessive rain during harvest can harm the crop.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rice Information -->
+        <div id="rice" class="plant-info" style="display:none;">
+            <h2>Rice (Oryza sativa)</h2>
+            <img src="/rice.jpg" alt="Rice Plant">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crops Information</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="index.html">
+                <img src="images/ProFarmlogo.png" alt="ProFarm Logo" height="200" class="header-logo">
+                </a>
+                <h1>ProFarm</h1>
+            </div>
+            <div class="header-right">
+                <nav>
+                    <ul class="nav-links">
+                        <li class="dropdown">
+                            <a href="#" class="dropbtn">Important Links</a>
+                            <div class="dropdown-content">
+                                <a href="/soilwiki/soiltype.html">Soil Type</a>
+                                <a href="indexmaptool.html">MAP Index</a>
+                                <a href="#">crop Index</a>
+                                <a href="#">Weather Updates</a>
+                                <a href="/reminders/index.html">Farmers Reminder System</a>
+                                <a href="#">Add More Links</a>
+                            </div>
+                        </li>
+                        <a href="/login/index.html"><li><button  class="btn btn-signup">Sign Up</button></li></a>
+                        <a href="/login/index.html"><li><button class="btn btn-login">Login</button></li></a>
+                        
                     </ul>
                 </nav>
             </div>
@@ -139,9 +235,13 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
+    
 
-    <!-- Footer -->
+    <!-- Link to the external JavaScript file -->
+    <script src="script.js"></script>
+
+    <!-- Footer will be loaded here -->
     <footer class="footer" id="footer-placeholder">
         <div class="footer-container">
             <div class="footer-left">
@@ -155,13 +255,87 @@
                 </ul>
             </div>
             <div class="footer-right">
-                <img src="/images/ProFarmlogo.png" alt="ProFarm Logo" height="400" class="footer-logo">
+                <img src="images/ProFarmlogo.png" alt="ProFarm Logo" class="footer-logo">
             </div>
         </div>
-    </footer>  
+    </footer>
+
+</body>
+</html>
+                <div class="info-box">
+                    <h3>General Information</h3>
+                    <p>Rice is a staple food crop for more than half of the world's population, especially in Asia.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Water Usage</h3>
+                    <p>Rice is grown in flooded fields and requires approximately 2500 liters of water to produce 1 kg of rice.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Diseases</h3>
+                    <p>Rice is susceptible to diseases such as blast, brown spot, and bacterial leaf blight.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Solution for Diseases</h3>
+                    <p>Using resistant varieties and applying fungicides can control rice diseases effectively.</p>
+                </div>
+                <div class="info-box full-width">
+                    <h3>Rain Requirements</h3>
+                    <p>Rice needs abundant rainfall during the growing period and is generally grown in regions with high rainfall.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Millet Information -->
+        <div id="millet" class="plant-info" style="display:none;">
+            <h2>Millet (Pennisetum glaucum)</h2>
+            <img src="/millet.jpeg" alt="Millet Plant">
+            <div class="info-box-container">
+                <div class="info-box">
+                    <h3>General Information</h3>
+                    <p>Millet is a drought-tolerant grain that grows well in arid and semi-arid regions. It is a staple food in parts of Africa and Asia.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Water Usage</h3>
+                    <p>Millet requires less water compared to other cereal crops, needing around 300-400 mm of water during its growth period.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Diseases</h3>
+                    <p>Common diseases include downy mildew and smut, which can affect crop yields.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Solution for Diseases</h3>
+                    <p>Crop rotation and disease-resistant varieties can help prevent millet diseases.</p>
+                </div>
+                <div class="info-box full-width">
+                    <h3>Rain Requirements</h3>
+                    <p>Millet thrives in regions with low rainfall and can withstand dry conditions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
     <!-- Link to the external JavaScript file -->
     <script src="cropscript.js"></script>
+
+    <!-- Footer will be loaded here -->
+    <footer class="footer" id="footer-placeholder">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2>ProFarm</h2>
+                <p>Optimizing Agriculture, Growing Together.</p>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <img src="images/ProFarmlogo.png" alt="ProFarm Logo" class="footer-logo">
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
